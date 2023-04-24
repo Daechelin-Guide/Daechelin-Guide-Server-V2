@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MenuResponse {
     private String date;
+    private String localDate;
     private String breakfast;
     private String lunch;
     private String dinner;

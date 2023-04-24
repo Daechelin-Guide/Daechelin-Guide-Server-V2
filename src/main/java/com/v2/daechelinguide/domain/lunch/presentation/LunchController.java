@@ -17,19 +17,15 @@ public class LunchController {
     private final LunchService lunchService;
 
     @PostMapping("/review/create")
-    public void Create(@RequestParam String year,
-                       @RequestParam String month,
-                       @RequestParam String day,
+    public void Create(@RequestParam String date,
                        @RequestBody LunchRegisterRequest request
     ) {
-        lunchService.reviewToRankingCreate(year, month, day, request);
+        lunchService.reviewToRankingCreate(date, request);
     }
 
     @GetMapping("/review")
-    public List<LunchReview> getReview(@RequestParam String year,
-                                       @RequestParam String month,
-                                       @RequestParam String day) {
-        return lunchService.getReview(year, month, day);
+    public List<LunchReview> getReview(@RequestParam String date) {
+        return lunchService.getReview(date);
     }
 
     @GetMapping("/ranking")

@@ -24,8 +24,7 @@ public class BreakfastService {
     private final BreakfastRepository breakfastRepository;
     private final BreakfastRankingRepository breakfastRankingRepository;
 
-    public void reviewToRankingCreate(String year, String month, String day, BreakfastReviewRequest request) {
-        String date = year.concat(month.concat(day));
+    public void reviewToRankingCreate(String date, BreakfastReviewRequest request) {
         BreakfastReview breakfastReview = request.toEntity();
         breakfastReview.injectBreakfast(getBreakfast(date));
 
@@ -53,8 +52,7 @@ public class BreakfastService {
         return breakfastReviewRepository.findByAvgStar(date);
     }
 
-    public List<BreakfastReview> getReview(String year, String month, String day) {
-        String date = year.concat(month.concat(day));
+    public List<BreakfastReview> getReview(String date) {
         return breakfastReviewRepository.findAllByBreakfast_Date(date);
     }
 

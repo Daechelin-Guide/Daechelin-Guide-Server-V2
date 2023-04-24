@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Slf4j
 @Service
@@ -37,8 +38,8 @@ public class MenuService {
         String date = year.concat(month.concat(day));
         String localDate = LocalDate.of(Integer.parseInt(year),
                 Integer.parseInt(month),
-                Integer.parseInt(day)).format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 E요일")
-        );
+                Integer.parseInt(day)).format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 E요일").withLocale(Locale.forLanguageTag("ko")));
+
         String get = webClientConfig.getLunch()
                 .get()
                 .uri(uriBuilder -> uriBuilder
@@ -93,6 +94,7 @@ public class MenuService {
                             .build());
 
             return new MenuResponse(localDate,
+                    date,
                     breakfast,
                     lunch,
                     dinner);
@@ -100,6 +102,7 @@ public class MenuService {
             throw new RuntimeException(e);
         } catch (NullPointerException e) {
             return new MenuResponse(localDate,
+                    date,
                     null,
                     null,
                     null

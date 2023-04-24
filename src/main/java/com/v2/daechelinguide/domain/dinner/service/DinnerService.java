@@ -24,8 +24,7 @@ public class DinnerService {
     private final DinnerRepository dinnerRepository;
     private final DinnerRankingRepository dinnerRankingRepository;
 
-    public void reviewToRankingCreate(String year, String month, String day, DinnerRegisterRequest request) {
-        String date = year.concat(month.concat(day));
+    public void reviewToRankingCreate(String date, DinnerRegisterRequest request) {
         DinnerReview dinnerReview = request.toEntity();
         dinnerReview.injectDinner(getDinner(date));
 
@@ -53,8 +52,7 @@ public class DinnerService {
         return dinnerReviewRepository.findByAvgStar(date);
     }
 
-    public List<DinnerReview> getReview(String year, String month, String day) {
-        String date = year.concat(month.concat(day));
+    public List<DinnerReview> getReview(String date) {
         return dinnerReviewRepository.findAllByDinner_Date(date);
     }
 

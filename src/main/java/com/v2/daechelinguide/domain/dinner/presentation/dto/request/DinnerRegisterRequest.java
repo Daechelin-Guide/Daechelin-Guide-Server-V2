@@ -1,6 +1,6 @@
 package com.v2.daechelinguide.domain.dinner.presentation.dto.request;
 
-import com.v2.daechelinguide.domain.lunch.domain.LunchReview;
+import com.v2.daechelinguide.domain.dinner.domain.DinnerReview;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +12,8 @@ public class DinnerRegisterRequest {
 
     private String message;
 
-    public LunchReview toEntity() {
-        return LunchReview.builder()
+    public DinnerReview toEntity() {
+        return DinnerReview.builder()
                 .star(star)
                 .message(message)
                 .build();

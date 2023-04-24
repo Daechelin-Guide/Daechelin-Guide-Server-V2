@@ -3,10 +3,10 @@ package com.v2.daechelinguide.domain.dinner.service;
 import com.v2.daechelinguide.domain.dinner.domain.Dinner;
 import com.v2.daechelinguide.domain.dinner.domain.DinnerRanking;
 import com.v2.daechelinguide.domain.dinner.domain.DinnerReview;
-import com.v2.daechelinguide.domain.dinner.domain.persentation.dto.request.DinnerReviewRequest;
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRankingRepository;
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRepository;
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerReviewRepository;
+import com.v2.daechelinguide.domain.dinner.presentation.dto.request.DinnerRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +24,7 @@ public class DinnerService {
     private final DinnerRepository dinnerRepository;
     private final DinnerRankingRepository dinnerRankingRepository;
 
-    public void reviewToRankingCreate(String year, String month, String day, DinnerReviewRequest request) {
+    public void reviewToRankingCreate(String year, String month, String day, DinnerRegisterRequest request) {
         String date = year.concat(month.concat(day));
         DinnerReview dinnerReview = request.toEntity();
         dinnerReview.injectDinner(getDinner(date));

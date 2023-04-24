@@ -10,4 +10,6 @@ spring:
     hibernate:
       ddl-auto: update
 
-key: d6c9fc0123434268992aec544d5da53d
+menu:
+  url: https://open.neis.go.kr/hub/mealServiceDietInfo
+  api-key: d6c9fc0123434268992aec544d5da53d

@@ -1,15 +1,14 @@
 package com.v2.daechelinguide.global.properties;
 
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.context.annotation.Configuration;
 
 
-@Getter
-@Component
-@Validated
-@ConfigurationProperties(prefix = "address")
+@Data
+@Configuration
+@ConfigurationProperties(prefix = "menu")
 public class AddressProperties {
-    private String lunch;
+    private String url;
+    private String apiKey;
 }

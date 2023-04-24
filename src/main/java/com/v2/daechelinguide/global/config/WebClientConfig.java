@@ -18,7 +18,7 @@ public class WebClientConfig implements WebFluxConfigurer {
     @Bean
     public WebClient getLunch() {
         return WebClient.builder()
-                .baseUrl(addressProperties.getLunch())
+                .baseUrl(addressProperties.getUrl())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }

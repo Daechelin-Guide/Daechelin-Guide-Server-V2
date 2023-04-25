@@ -1,4 +1,4 @@
-package com.v2.daechelinguide.domain.breakfast.persentation.request;
+package com.v2.daechelinguide.domain.breakfast.persentation.dto.request;
 
 import com.v2.daechelinguide.domain.breakfast.domain.BreakfastReview;
 import lombok.AccessLevel;

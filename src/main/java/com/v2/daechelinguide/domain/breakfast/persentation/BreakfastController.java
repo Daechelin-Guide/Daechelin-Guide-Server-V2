@@ -2,7 +2,7 @@ package com.v2.daechelinguide.domain.breakfast.persentation;
 
 import com.v2.daechelinguide.domain.breakfast.domain.BreakfastRanking;
 import com.v2.daechelinguide.domain.breakfast.domain.BreakfastReview;
-import com.v2.daechelinguide.domain.breakfast.persentation.request.BreakfastReviewRequest;
+import com.v2.daechelinguide.domain.breakfast.persentation.dto.request.BreakfastReviewRequest;
 import com.v2.daechelinguide.domain.breakfast.service.BreakfastService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +25,7 @@ public class BreakfastController {
 
     @GetMapping("/review")
     public List<BreakfastReview> getReview(@RequestParam String date) {
-        return breakfastService.getReview(date);
+        return breakfastService.getAllReview(date);
     }
 
     @GetMapping("/ranking")

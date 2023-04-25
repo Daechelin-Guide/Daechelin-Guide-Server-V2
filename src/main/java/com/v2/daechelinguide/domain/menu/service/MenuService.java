@@ -38,7 +38,7 @@ public class MenuService {
         String date = year.concat(month.concat(day));
         String localDate = LocalDate.of(Integer.parseInt(year),
                 Integer.parseInt(month),
-                Integer.parseInt(day)).format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 E요일").withLocale(Locale.forLanguageTag("ko")));
+                Integer.parseInt(day)).format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 (E)").withLocale(Locale.forLanguageTag("ko")));
 
         String get = webClientConfig.getLunch()
                 .get()

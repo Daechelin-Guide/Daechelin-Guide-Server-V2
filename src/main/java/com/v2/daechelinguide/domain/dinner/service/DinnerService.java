@@ -7,6 +7,7 @@ import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRankingReposi
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRepository;
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerReviewRepository;
 import com.v2.daechelinguide.domain.dinner.presentation.dto.request.DinnerRegisterRequest;
+import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,6 +59,6 @@ public class DinnerService {
 
     public Dinner getDinner(String date) {
         return dinnerRepository.findByDate(date)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> MealNotFoundException.EXCEPTION);
     }
 }

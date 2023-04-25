@@ -7,6 +7,7 @@ import com.v2.daechelinguide.domain.lunch.domain.repository.LunchRankingReposito
 import com.v2.daechelinguide.domain.lunch.domain.repository.LunchRepository;
 import com.v2.daechelinguide.domain.lunch.domain.repository.LunchReviewRepository;
 import com.v2.daechelinguide.domain.lunch.presentation.dto.request.LunchRegisterRequest;
+import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,6 +59,6 @@ public class LunchService {
 
     public Lunch getLunch(String date) {
         return lunchRepository.findByDate(date)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> MealNotFoundException.EXCEPTION);
     }
 }

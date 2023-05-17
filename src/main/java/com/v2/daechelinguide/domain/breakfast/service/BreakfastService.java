@@ -6,8 +6,9 @@ import com.v2.daechelinguide.domain.breakfast.domain.BreakfastReview;
 import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastRankingRepository;
 import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastRepository;
 import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastReviewRepository;
-import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.request.BreakfastReviewRequest;
+import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.ReviewListResponse;
+import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,8 +54,13 @@ public class BreakfastService {
         return breakfastReviewRepository.findByAvgStar(date);
     }
 
-    public List<BreakfastReview> getAllReview(String date) {
-        return breakfastReviewRepository.findAllByBreakfast_Date(date);
+    public ReviewListResponse getAllReview(String date) {
+        List<BreakfastReview> review = breakfastReviewRepository.findAllByBreakfast_Date(date);
+
+        return ReviewListResponse.builder()
+                .totalStar(getAvg(date))
+                .response(review)
+                .build();
     }
 
     public Breakfast getBreakfast(String date) {

@@ -13,6 +13,6 @@ public interface DinnerReviewRepository extends JpaRepository<DinnerReview, Long
 
     List<DinnerReview> findAllByDinner_Date(String date);
 
-    @Query(value = "select AVG(star) from review_breakfast where breakfast_date = :date", nativeQuery = true)
+    @Query(value = "select AVG(star) from review_dinner where dinner_date = :date", nativeQuery = true)
     double findByAvgStar(@Param("date") String date);
 }

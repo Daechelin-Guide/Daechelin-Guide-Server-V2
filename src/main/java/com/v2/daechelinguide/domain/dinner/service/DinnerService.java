@@ -7,6 +7,7 @@ import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRankingReposi
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerRepository;
 import com.v2.daechelinguide.domain.dinner.domain.repository.DinnerReviewRepository;
 import com.v2.daechelinguide.domain.dinner.presentation.dto.request.DinnerRegisterRequest;
+import com.v2.daechelinguide.domain.dinner.presentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -53,8 +54,13 @@ public class DinnerService {
         return dinnerReviewRepository.findByAvgStar(date);
     }
 
-    public List<DinnerReview> getReview(String date) {
-        return dinnerReviewRepository.findAllByDinner_Date(date);
+    public ReviewListResponse getReview(String date) {
+        List<DinnerReview> review = dinnerReviewRepository.findAllByDinner_Date(date);
+
+        return ReviewListResponse.builder()
+                .totalStar(getAvg(date))
+                .response(review)
+                .build();
     }
 
     public Dinner getDinner(String date) {

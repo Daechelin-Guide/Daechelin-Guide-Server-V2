@@ -1,14 +1,12 @@
 package com.v2.daechelinguide.domain.dinner.presentation;
 
 import com.v2.daechelinguide.domain.dinner.domain.DinnerRanking;
-import com.v2.daechelinguide.domain.dinner.domain.DinnerReview;
 import com.v2.daechelinguide.domain.dinner.presentation.dto.request.DinnerRegisterRequest;
+import com.v2.daechelinguide.domain.dinner.presentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.domain.dinner.service.DinnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/dinner")
@@ -24,7 +22,7 @@ public class DinnerController {
     }
 
     @GetMapping("/review")
-    public List<DinnerReview> getReview(@RequestParam String date) {
+    public ReviewListResponse getReview(@RequestParam String date) {
         return dinnerService.getReview(date);
     }
 

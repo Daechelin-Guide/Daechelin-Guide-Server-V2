@@ -17,14 +17,14 @@ public class Dinner {
     @Id
     private String date;
 
-    private String dinner;
+    private String meal;
 
     private String mealDate;
 
     @Builder
-    public Dinner(String date, String dinner, String mealDate) {
+    public Dinner(String date, String meal, String mealDate) {
         this.date = date;
-        this.dinner = dinner;
+        this.meal = meal;
         this.mealDate = mealDate;
     }
 }

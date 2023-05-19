@@ -78,17 +78,17 @@ public class MenuService {
             }
 
             breakfastRepository.save(Breakfast.builder()
-                            .breakfast(breakfast)
+                            .meal(breakfast)
                             .date(date)
                             .mealDate(localDate)
                             .build());
             lunchRepository.save(Lunch.builder()
-                            .lunch(lunch)
+                            .meal(lunch)
                             .date(date)
                             .mealDate(localDate)
                             .build());
             dinnerRepository.save(Dinner.builder()
-                            .dinner(dinner)
+                            .meal(dinner)
                             .date(date)
                             .mealDate(localDate)
                             .build());

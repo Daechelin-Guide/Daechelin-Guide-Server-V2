@@ -7,6 +7,7 @@ import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastRanking
 import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastRepository;
 import com.v2.daechelinguide.domain.breakfast.domain.repository.BreakfastReviewRepository;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.request.BreakfastReviewRequest;
+import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.RankingListResponse;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.global.exception.global.MealNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -34,10 +35,14 @@ public class BreakfastService {
         rankingCreate(date);
     }
 
-    public Page<BreakfastRanking> getRanking() {
+    public RankingListResponse getRanking() {
         Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "star");
 
-        return breakfastRankingRepository.findAll(pageable);
+        Page<BreakfastRanking> ranking = breakfastRankingRepository.findAll(pageable);
+
+        return RankingListResponse.builder()
+                .response(ranking.getContent())
+                .build()
     }
 
     public void rankingCreate(String date) {

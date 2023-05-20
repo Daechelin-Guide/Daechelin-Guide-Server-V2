@@ -2,6 +2,7 @@ package com.v2.daechelinguide.domain.breakfast.persentation;
 
 import com.v2.daechelinguide.domain.breakfast.domain.BreakfastRanking;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.request.BreakfastReviewRequest;
+import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.RankingListResponse;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.domain.breakfast.service.BreakfastService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class BreakfastController {
     }
 
     @GetMapping("/ranking")
-    public Page<BreakfastRanking> getRankings() {
+    public RankingListResponse getRankings() {
         return breakfastService.getRanking();
     }
 }

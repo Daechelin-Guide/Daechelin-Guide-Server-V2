@@ -1,11 +1,10 @@
 package com.v2.daechelinguide.domain.lunch.presentation;
 
-import com.v2.daechelinguide.domain.lunch.domain.LunchRanking;
 import com.v2.daechelinguide.domain.lunch.presentation.dto.request.LunchRegisterRequest;
+import com.v2.daechelinguide.domain.lunch.presentation.dto.response.RankingListResponse;
 import com.v2.daechelinguide.domain.lunch.presentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.domain.lunch.service.LunchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,7 +26,7 @@ public class LunchController {
     }
 
     @GetMapping("/ranking")
-    public Page<LunchRanking> getRankings(){
+    public RankingListResponse getRankings(){
         return lunchService.getRanking();
     }
 }

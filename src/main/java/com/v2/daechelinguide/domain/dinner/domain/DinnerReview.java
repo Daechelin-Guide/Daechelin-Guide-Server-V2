@@ -1,5 +1,6 @@
 package com.v2.daechelinguide.domain.dinner.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class DinnerReview {
     private String message;
 
     @ManyToOne
-    @JoinColumn(name = "dinner_date")
+    @JsonProperty("menu")
     private Dinner dinner;
 
     public void injectDinner(Dinner dinner) {

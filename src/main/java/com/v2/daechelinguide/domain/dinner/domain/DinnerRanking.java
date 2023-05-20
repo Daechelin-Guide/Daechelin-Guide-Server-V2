@@ -1,5 +1,6 @@
 package com.v2.daechelinguide.domain.dinner.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -18,6 +19,7 @@ public class DinnerRanking {
     private double star;
 
     @ManyToOne
+    @JsonProperty("menu")
     private Dinner dinner;
 
     public void injectDinner(Dinner dinner) {

@@ -1,5 +1,6 @@
 package com.v2.daechelinguide.domain.breakfast.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class BreakfastReview {
     private String message;
 
     @ManyToOne
-    @JoinColumn(name = "breakfast_date")
+    @JsonProperty("menu")
     private Breakfast breakfast;
 
     public void injectBreakfast(Breakfast breakfast) {

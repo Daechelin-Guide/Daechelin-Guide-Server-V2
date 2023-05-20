@@ -1,12 +1,10 @@
 package com.v2.daechelinguide.domain.breakfast.persentation;
 
-import com.v2.daechelinguide.domain.breakfast.domain.BreakfastRanking;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.request.BreakfastReviewRequest;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.RankingListResponse;
 import com.v2.daechelinguide.domain.breakfast.persentation.dto.response.ReviewListResponse;
 import com.v2.daechelinguide.domain.breakfast.service.BreakfastService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -42,7 +42,7 @@ public class LunchService {
 
         return RankingListResponse.builder()
                 .response(ranking.getContent())
-                .build()
+                .build();
     }
 
     public void rankingCreate(String date) {

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -32,6 +33,21 @@ public class MenuService {
     private final LunchRepository lunchRepository;
     private final DinnerRepository dinnerRepository;
     private final WebClientConfig webClientConfig;
+
+    public MenuResponse getMeal(String date, String localDate) {
+        Breakfast breakfast = breakfastRepository.findBreakfastByDate(date);
+        Lunch lunch = lunchRepository.findLunchByDate(date);
+        Dinner dinner = dinnerRepository.findDinnerByDate(date);
+
+        return new MenuResponse(
+                breakfast.getMeal(),
+                lunch.getMeal(),
+                dinner.getMeal(),
+                date,
+                localDate
+        );
+
+    }
 
     @Transactional
     public MenuResponse getMenu(String year, String month, String day) {
@@ -107,6 +123,8 @@ public class MenuService {
                     null,
                     null
                     );
+        } catch (IllegalArgumentException e) {
+            return getMeal(date,localDate);
         }
     }
 

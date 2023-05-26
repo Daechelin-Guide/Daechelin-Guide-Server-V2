@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface LunchRepository extends JpaRepository<Lunch, String> {
     Optional<Lunch> findByDate(String date);
+    Lunch findLunchByDate(String date);
 
 }

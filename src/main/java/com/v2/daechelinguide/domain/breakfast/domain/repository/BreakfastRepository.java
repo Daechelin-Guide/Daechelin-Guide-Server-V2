@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface BreakfastRepository extends JpaRepository<Breakfast, String> {
         Optional<Breakfast> findByDate(String date);
+        Breakfast findBreakfastByDate(String date);
 }

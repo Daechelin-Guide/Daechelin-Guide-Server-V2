@@ -47,9 +47,8 @@ public class MenuService {
             String lunchMeal = lunch.getMeal();
             String dinnerMeal = dinner.getMeal();
 
-            return new MenuResponse(
+            return new MenuResponse(localDate,
                     date,
-                    localDate,
                     breakfastMeal,
                     lunchMeal,
                     dinnerMeal

@@ -10,7 +10,6 @@ import com.v2.daechelinguide.domain.menu.presentation.dto.response.MenuResponse;
 import com.v2.daechelinguide.global.config.WebClientConfig;
 import com.v2.daechelinguide.global.properties.AddressProperties;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Optional;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MenuService {
@@ -34,28 +31,36 @@ public class MenuService {
     private final DinnerRepository dinnerRepository;
     private final WebClientConfig webClientConfig;
 
-    public MenuResponse getMeal(String date, String localDate) {
-        Breakfast breakfast = breakfastRepository.findBreakfastByDate(date);
-        Lunch lunch = lunchRepository.findLunchByDate(date);
-        Dinner dinner = dinnerRepository.findDinnerByDate(date);
-
-        return new MenuResponse(
-                breakfast.getMeal(),
-                lunch.getMeal(),
-                dinner.getMeal(),
-                date,
-                localDate
-        );
-
-    }
-
-    @Transactional
-    public MenuResponse getMenu(String year, String month, String day) {
+    @Transactional(readOnly = true)
+    public MenuResponse getMeal(String year, String month, String day) {
         String date = year.concat(month.concat(day));
         String localDate = LocalDate.of(Integer.parseInt(year),
                 Integer.parseInt(month),
                 Integer.parseInt(day)).format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 (E)").withLocale(Locale.forLanguageTag("ko")));
 
+        Breakfast breakfast = breakfastRepository.findBreakfastByDate(date);
+        Lunch lunch = lunchRepository.findLunchByDate(date);
+        Dinner dinner = dinnerRepository.findDinnerByDate(date);
+
+        try {
+            String breakfastMeal = breakfast.getMeal();
+            String lunchMeal = lunch.getMeal();
+            String dinnerMeal = dinner.getMeal();
+
+            return new MenuResponse(
+                    breakfastMeal,
+                    lunchMeal,
+                    dinnerMeal,
+                    date,
+                    localDate
+            );
+        }catch (NullPointerException e) {
+            return getMenu(date, localDate);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public MenuResponse getMenu(String date, String localDate) {
         String get = webClientConfig.getLunch()
                 .get()
                 .uri(uriBuilder -> uriBuilder
@@ -123,8 +128,6 @@ public class MenuService {
                     null,
                     null
                     );
-        } catch (IllegalArgumentException e) {
-            return getMeal(date,localDate);
         }
     }
 

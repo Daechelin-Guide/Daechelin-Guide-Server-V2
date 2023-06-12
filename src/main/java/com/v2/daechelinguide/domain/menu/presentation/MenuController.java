@@ -19,7 +19,7 @@ public class MenuController {
             @RequestParam String year,
             @RequestParam String month,
             @RequestParam String day) {
-        return menuService.getMenu(year, month, day);
+        return menuService.getMeal(year, month, day);
     }
 
 }

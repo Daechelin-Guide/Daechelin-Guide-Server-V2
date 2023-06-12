@@ -48,11 +48,11 @@ public class MenuService {
             String dinnerMeal = dinner.getMeal();
 
             return new MenuResponse(
+                    date,
+                    localDate,
                     breakfastMeal,
                     lunchMeal,
-                    dinnerMeal,
-                    date,
-                    localDate
+                    dinnerMeal
             );
         }catch (NullPointerException e) {
             return getMenu(date, localDate);

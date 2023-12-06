@@ -25,6 +25,9 @@ jobs:
         spring.datasource.password: ${{ secrets.DB_PASSWORD }}
         menu.url: ${{ secrets.OPEN_URL }}
         menu.api-key: ${{ secrets.OPEN_API_KEY }}
+
+    - name: set chmod
+      run: chmod 400 ./gradlew
         
     - name: Build with Gradle
       run: ./gradlew build -x test

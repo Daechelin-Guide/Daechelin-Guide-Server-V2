@@ -51,4 +51,4 @@ jobs:
           sudo docker rm daesyullaeng
           sudo docker rmi daesyullaeng
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
-          sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
+          sudo docker run -d -p 8080:8080 --name daesyullaeng ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest

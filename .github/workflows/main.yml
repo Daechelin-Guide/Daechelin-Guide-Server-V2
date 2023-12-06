@@ -27,10 +27,10 @@ jobs:
         menu.api-key: ${{ secrets.OPEN_API_KEY }}
 
     - name: set chmod
-      run: chmod 400 ./gradlew
+      run: chmod +x ./gradlew
         
     - name: Build with Gradle
-      run: ./gradlew build -x test
+      run: ./gradlew bootJar
 
     - name: Docker build & push to prod
       run: |

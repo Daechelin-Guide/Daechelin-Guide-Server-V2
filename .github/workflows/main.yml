@@ -47,8 +47,8 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         envs: GITHUB_SHA
         script: |
-          sudo docker stop daesyullaeng
-          sudo docker rm daesyullaeng
-          sudo docker rmi daesyullaeng
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
-          sudo docker run -d -p 8080:8080 --name daesyullaeng ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
+          docker stop daesyullaeng
+          docker rm daesyullaeng
+          docker rmi ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
+          docker run -d -p 8080:8080 --name daesyullaeng ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest

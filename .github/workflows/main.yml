@@ -35,8 +35,8 @@ jobs:
     - name: Docker build & push to prod
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/daesyullaeng .
-        docker push ${{ secrets.DOCKER_USERNAME }}/daesyullaeng
+        docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
 
     - name: Deploy to prod
       uses: appleboy/ssh-action@master
@@ -47,7 +47,8 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         envs: GITHUB_SHA
         script: |
-          sudo docker ps
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/daesyullaeng
-          sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/daesyullaeng
-          sudo docker image prune -f
+          sudo docker stop daesyullaeng
+          sudo docker rm daesyullaeng
+          sudo docker rmi daesyullaeng
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
+          sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/daesyullaeng:latest
